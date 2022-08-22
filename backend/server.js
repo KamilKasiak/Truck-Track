@@ -13,7 +13,11 @@ const port = process.env.PORT;
 
 // MIDDLEWARE
 app.use(express.json())
-app. use(cors())
+app.use(cors({
+    "origin": "*",
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    "optionsSuccessStatus": 204
+  }))
 
 // ROUTES 
 app.use("/api/tracks",router)

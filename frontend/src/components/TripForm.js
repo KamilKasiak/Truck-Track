@@ -8,7 +8,6 @@ const TripForm = () => {
     const [cityTwo, setCityTwo] = useState("")
     const [dateStart, setStart] = useState("")
     const [dateStop, setStop] = useState("")
-    //const [workTime, setWorkTime] = useState("")
     const [error, setError] = useState(null)
     const [emptyFields, setEmptyFields] = useState([])
 
