@@ -10,7 +10,6 @@ const TripDetails = ({ trip }) => {
     const [dateStop, setStop] = useState("")
     const [isParagraphClicked, setParagraphClicked] = useState(false)
     const [error, setError] = useState(null)
-    const id = trip._id
 
     const date = new Date(trip.dateStart).toLocaleDateString(
         'en-gb',
