@@ -1,8 +1,12 @@
 import express from "express"
 import { getTrack, getTracks, createTrack, deleteTrack, updateTrack } from "../controllers/tracksController.js"
+import requireAuth from "../middleware/requireAuth.js"
 
 
 const router = express.Router()
+
+//do check before the rest. if error it stops and throw error. Don't let to move to other trip routes
+router.use(requireAuth)
 
 // GET all tracks
 router.get("/", getTracks)

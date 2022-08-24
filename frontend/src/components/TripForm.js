@@ -1,9 +1,11 @@
 import { useState } from "react"
 import { useTripContext } from "../hooks/useTripContext"
+import { useAuthContext } from "../hooks/useAuthContext"
 
 
 const TripForm = () => {
     const { dispatch } = useTripContext()
+    const { user } = useAuthContext()
     const [title, setTitle] = useState("")
     const [cityTwo, setCityTwo] = useState("")
     const [dateStart, setStart] = useState("")
@@ -14,6 +16,10 @@ const TripForm = () => {
     const handleSubmit = async(e) => {
         //prevent to reload page on submit
         e.preventDefault()
+        if(!user) {
+            setError("You must be logged in")
+            return
+        }
 
         const trip = {title, cityTwo, dateStart, dateStop}
 
@@ -21,7 +27,8 @@ const TripForm = () => {
             method: "POST",
             body: JSON.stringify(trip),
             headers: {
-                "content-type": "application/json"
+                "content-type": "application/json",
+                "Authorization": `Bearer ${user.token}`
             }
         })
         const json = await response.json()

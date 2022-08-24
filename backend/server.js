@@ -4,6 +4,7 @@ dotenv.config()
 import cors from "cors"
 import mongoose from "mongoose"
 import router from "./routes/tracks.js"
+import userRouter from "./routes/user.js"
 
 
 
@@ -21,6 +22,7 @@ app.use(cors({
 
 // ROUTES 
 app.use("/api/tracks",router)
+app.use("/api/user",userRouter)
 
 // CONNECT TO DB
 mongoose.connect(process.env.MONGO_URI)

@@ -19,6 +19,10 @@ const tripSchema = new mongoose.Schema({
     workTime: {
         type: Date,
     },
+    user_id: {
+        type: String,
+        required: true
+    },
 }, {timestamps: true});
 
 const Trip = mongoose.model("Trip", tripSchema)
