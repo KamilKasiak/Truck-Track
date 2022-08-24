@@ -16,8 +16,8 @@
 
 
 ## General Information
-- When you work as a driver you want to store your trips somewhere in db.
-- One of my familly memmber is a driver and he asked me for that kind of application which I am happy to develop with MERN stack in learning purposes
+- When you work as a driver you want to store your trips somewhere in database.
+- One of my familly memmber is a driver and asked me for that kind of application which I am happy to develop with MERN stack in learning purposes
 <!-- - What problem does it (intend to) solve?
 - What is the purpose of your project?
 - Why did you undertake it? -->
@@ -34,18 +34,20 @@
 ## Features
 <!-- List the ready features here: -->
 - Adding trips to database based on MongoDB Atlas (collecting trace rout, date of start and end trip)
-- Retrive manage data in db from UI
+- Recive and manage data from db to UI and vice versa
+- Sign up user with JSON Web Token and connect every user with database
+- Store JWT Token in localStorage to keep user logged in for max 3 days
 
 
 
 ## Screenshots
-![Example screenshot](./img/basic.png)
-
+![Example screenshot](./img/signup.png)
+![Example screenshot](./img/logedIn.png)
+![Example screenshot](./img/dateUpdate.png)
 
 
 ## Setup
 Make sure to prepare your own .env file and database with every credentials which I don't provide here.
-
 
 
 
@@ -63,9 +65,9 @@ Room for improvement:
 - delete button shouldn't be so easy to tap w/o a prompt of confirmation
 
 To do:
-- Implement login including social media logins like google and facebook to make this app functionality and store individuals date for user. I have plan to use passport
-- add update functionality to update End date if not provided on begining
+- Implement login with social media logins like google and facebook.
 - some visual changes
+- add vehicle mileage to database and calculate daily trip length
 
 
 

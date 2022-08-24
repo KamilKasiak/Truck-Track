@@ -2,9 +2,11 @@ import { useState } from "react"
 import { useTripContext } from "../hooks/useTripContext";
 import { formatDistanceToNow, formatDistanceStrict} from "date-fns"
 import Zoom from '@mui/material/Zoom';
+import { useAuthContext } from "../hooks/useAuthContext";
 
 
 const TripDetails = ({ trip }) => {
+  const { user } = useAuthContext()
     const [isExpanded, setExpanded] = useState(false)
     const { dispatch } = useTripContext()
     const [dateStop, setStop] = useState("")
@@ -35,9 +37,15 @@ const TripDetails = ({ trip }) => {
 
     
     const handleDeleteClick = async () => {
-      
+      if (!user) {
+        return
+      }
+
       const response = await fetch("http://localhost:4000/api/tracks/" + trip._id, {
-        method: "DELETE"
+        method: "DELETE",
+        headers: { 
+          "Authorization": `Bearer ${user.token}`
+        }
       })
       // waiting for response from server then get json from it
       const json = await response.json()
@@ -48,14 +56,18 @@ const TripDetails = ({ trip }) => {
     }
 
     const handleUpdateSubmit = async (e) => {
-      //e.preventDefault()
+      if (!user) {
+        return
+      }
+
       const tripUpdate  = { dateStop }
       
       const response = await fetch("http://localhost:4000/api/tracks/" + trip._id, {
         method: "PATCH",
           body: JSON.stringify(tripUpdate),
           headers: {
-              "content-type": "application/json"
+              "content-type": "application/json",
+              "Authorization": `Bearer ${user.token}`
           }
       })
         const json = await response.json()
@@ -100,7 +112,7 @@ const TripDetails = ({ trip }) => {
           {isExpanded ? <p><strong>Start date: </strong> {date}</p> : null }
           {isExpanded ? <p onClick={onParagraphClick} ><strong>End date: </strong> {trip.dateStop ? date1 : "Click to update"}</p> : null }
           {isParagraphClicked && !trip.dateStop ? 
-            <form onSubmit={handleUpdateSubmit}><input
+            <form onSubmit={handleUpdateSubmit}><input className="endDateInput"
                 type="datetime-local"
                 onChange={(event) => 
                 setStop(event.target.value) }
@@ -108,7 +120,9 @@ const TripDetails = ({ trip }) => {
                 
                 
                 />
-            <button>update</button> 
+                <Zoom in = {isParagraphClicked}>
+                   <button className="updateButton">Update</button>
+                </Zoom>
             </form> : null}
     
           {isExpanded ? <p><strong>Work length: </strong> {trip.dateStop ? timeDiff : "On going"}</p>: null }

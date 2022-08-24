@@ -2,15 +2,24 @@ import { useEffect} from "react"
 import TripDetails from "../components/TripDetails"
 import TripForm from "../components/TripForm.js"
 import { useTripContext } from "../hooks/useTripContext"
+import { useAuthContext } from "../hooks/useAuthContext"
 
 
 const Home = () => {
     const {trips, dispatch} = useTripContext()
+    const { user } = useAuthContext()
 
     // useEffect fire function when a component is rendered. declare [] to make it empty when component is rendered
     useEffect(() => {
         const fetchTrips = async () => {
-            const response = await fetch("http://localhost:4000/api/tracks")
+        
+
+            const response = await fetch("http://localhost:4000/api/tracks", {
+                headers: {
+                    // have to get headers with authorization data token: Bearer + token grabed from user from AuthContext
+                    "Authorization": `Bearer ${user.token}`
+                }
+            })
             const json = await response.json()
 
             if(response.ok) {
@@ -19,8 +28,11 @@ const Home = () => {
             }
         }
 
-        fetchTrips()
-    }, [dispatch])
+        if(user) {
+            fetchTrips()
+        }
+        
+    }, [dispatch, user])
 
     return (
         <div className="home">

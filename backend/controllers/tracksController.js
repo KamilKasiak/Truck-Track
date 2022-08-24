@@ -2,10 +2,11 @@ import mongoose from "mongoose"
 import Trip from "../models/tripModel.js"
 
 
+
 //GET all tracks
 const getTracks = async (req, res) => {
-    const trips = await Trip.find({}). sort({dateStart: -1})
-
+    const  user_id = req.user._id
+    const trips = await Trip.find({ user_id }).sort({dateStart: -1})
     res.status(200).json(trips)
 }
 
@@ -50,12 +51,13 @@ const createTrack = async (req,res) => {
 
     // add doc to database
     try {
-        const trip = await Trip.create({title, cityTwo, dateStart, dateStop, workTime})
+        // grab user._id from req - we passed user object to req in middleware requireAuth
+        const user_id = req.user._id
+        const trip = await Trip.create({title, cityTwo, dateStart, dateStop, workTime, user_id})
        return  res.status(200).json(trip)
     } catch (err) {
         return res.status(404).json({err:err.message})
     }
-
 }
 
 

@@ -10,8 +10,6 @@ const Login = () => {
         event.preventDefault()
 
         await login(email, password)
-
-        console.log(email, password)
     }
 
     return (

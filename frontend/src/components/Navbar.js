@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import { useLogout } from "../hooks/useLogout"
 import { useAuthContext } from "../hooks/useAuthContext"
+import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined';
 
 
 const Navbar = () => {
@@ -10,7 +11,7 @@ const Navbar = () => {
         <header>
             <div className="container">
                 <Link to="/">
-                    <h1>Truck Track</h1>
+                    <h1><LocalShippingOutlinedIcon fontSize= {"large"} /> Truck Track</h1>
                 </Link>
                 <nav>
                 {user && (

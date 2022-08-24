@@ -4,13 +4,14 @@ import { useSignup } from "../hooks/useSignup"
 const Signup = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [confirmPassword, setConfirmPassword] = useState("")
     const { signup, error, isLoading} = useSignup()
 
     const handleSubmit = async (event) => {
         event.preventDefault()
+       
         await signup(email, password)
-
-        console.log(email, password)
+       
     }
 
     return (
@@ -28,7 +29,16 @@ const Signup = () => {
                 onChange={(event) => setPassword(event.target.value)}
                 value={password}
             />
+            <label>Confirm Password:</label>
+            <input
+                type="password"
+                onChange={(event) => setConfirmPassword(event.target.value)}
+                value={confirmPassword}
+                className={password!==confirmPassword ? "error" : null}    
+            />
+            
             <button disabled= {isLoading}>Sign Up</button>
+            {password !== confirmPassword ? <div className="error"><p>Passwords doesn't match</p></div> : null}
 
             {error && <div className="error">{error}</div>}
         </form>
