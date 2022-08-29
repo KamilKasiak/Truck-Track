@@ -10,6 +10,8 @@ const TripForm = () => {
     const [cityTwo, setCityTwo] = useState("")
     const [dateStart, setStart] = useState("")
     const [dateStop, setStop] = useState("")
+    const [milageStart, setMilageStart] = useState("")
+    const [milageStop, setMilageStop] = useState("")
     const [error, setError] = useState(null)
     const [emptyFields, setEmptyFields] = useState([])
 
@@ -21,7 +23,7 @@ const TripForm = () => {
             return
         }
 
-        const trip = {title, cityTwo, dateStart, dateStop}
+        const trip = {title, cityTwo, dateStart, dateStop, milageStart, milageStop}
 
         const response = await fetch("http://localhost:4000/api/tracks", {
             method: "POST",
@@ -42,6 +44,8 @@ const TripForm = () => {
             setStart("")
             setStop("")
             setCityTwo("")
+            setMilageStart("")
+            setMilageStop("")
             setError(null)
             setEmptyFields([])
             console.log("New trip added", json)
@@ -82,6 +86,20 @@ const TripForm = () => {
             onChange={(event) => setStop(event.target.value)}
             value={dateStop}
             />
+            <div className="millage">
+            <input className={emptyFields.includes("milageStart") ? "error half" : "half"} 
+            type="number" 
+            placeholder="KM start"
+            onChange={(event) => setMilageStart(event.target.value)}
+            value={milageStart}
+            />
+            <input type="number" 
+            className="half" 
+            placeholder="KM end"
+            onChange={(event) => setMilageStop(event.target.value)}
+            value={milageStop}
+            />
+            </div>
 
             <button>Add Trip</button>
         {error && <div className="error">{error}</div>}

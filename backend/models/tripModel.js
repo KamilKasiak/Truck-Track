@@ -21,8 +21,15 @@ const tripSchema = new mongoose.Schema({
     },
     user_id: {
         type: String,
-        required: true
+        required: true,
     },
+    milageStart: {
+        type: Number,
+        required: true,
+    },
+    milageStop: {
+        type: Number,
+    }
 }, {timestamps: true});
 
 const Trip = mongoose.model("Trip", tripSchema)

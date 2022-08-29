@@ -33,7 +33,9 @@
 
 ## Features
 <!-- List the ready features here: -->
-- Adding trips to database based on MongoDB Atlas (collecting trace rout, date of start and end trip)
+- Adding trips to database based on MongoDB Atlas (collecting trace rout, date of start and end trip, starting and ending vehicle millage)
+- Calculate work time based on trip length
+- Calculate trip length based on starting and ending millage
 - Recive and manage data from db to UI and vice versa
 - Sign up user with JSON Web Token and connect every user with database
 - Store JWT Token in localStorage to keep user logged in for max 3 days
@@ -41,9 +43,11 @@
 
 
 ## Screenshots
-![Example screenshot](./img/signup.png)
 ![Example screenshot](./img/logedIn.png)
 ![Example screenshot](./img/dateUpdate.png)
+![Example screenshot](./img/mobile.png)
+![Example screenshot](./img/validation.png)
+![Example screenshot](./img/signup.png)
 
 
 ## Setup
@@ -67,7 +71,6 @@ Room for improvement:
 To do:
 - Implement login with social media logins like google and facebook.
 - some visual changes
-- add vehicle mileage to database and calculate daily trip length
 
 
 

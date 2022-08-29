@@ -33,7 +33,7 @@ const getTrack = async (req,res) => {
 
 //CREATE a new track
 const createTrack = async (req,res) => {
-    const {title, cityTwo, dateStart, dateStop, workTime} = req.body
+    const {title, cityTwo, dateStart, dateStop, workTime, milageStart, milageStop} = req.body
 
     let emptyFields = []
     if(!title) {
@@ -45,6 +45,9 @@ const createTrack = async (req,res) => {
     if(!dateStart){
         emptyFields.push("dateStart")
     }
+    if(!milageStart) {
+        emptyFields.push("milageStart")
+    }
     if(emptyFields.length > 0) {
         return res.status(404).json({error: "Please fill in empty fields", emptyFields })
     }
@@ -53,7 +56,7 @@ const createTrack = async (req,res) => {
     try {
         // grab user._id from req - we passed user object to req in middleware requireAuth
         const user_id = req.user._id
-        const trip = await Trip.create({title, cityTwo, dateStart, dateStop, workTime, user_id})
+        const trip = await Trip.create({title, cityTwo, dateStart, dateStop, workTime, user_id, milageStart, milageStop})
        return  res.status(200).json(trip)
     } catch (err) {
         return res.status(404).json({err:err.message})

@@ -11,7 +11,10 @@ const TripDetails = ({ trip }) => {
     const { dispatch } = useTripContext()
     const [dateStop, setStop] = useState("")
     const [isParagraphClicked, setParagraphClicked] = useState(false)
+    const [isMilageClicked, setMilageClicked] = useState(false)
+    const [milageStop, setMilageStop] = useState("")
     const [error, setError] = useState(null)
+    const tripLength = (trip.milageStop - trip.milageStart)
 
     const date = new Date(trip.dateStart).toLocaleDateString(
         'en-gb',
@@ -35,7 +38,6 @@ const TripDetails = ({ trip }) => {
       }
     );
 
-    
     const handleDeleteClick = async () => {
       if (!user) {
         return
@@ -58,6 +60,8 @@ const TripDetails = ({ trip }) => {
     const handleUpdateSubmit = async (e) => {
       if (!user) {
         return
+      } else {
+        setStop(e.target.value)
       }
 
       const tripUpdate  = { dateStop }
@@ -84,6 +88,37 @@ const TripDetails = ({ trip }) => {
       }
     }
 
+    const handleUpdateMilage = async (e) => {
+      if (!user) {
+        return
+      } else {
+        setMilageStop(e.target.value)
+      }
+
+      const tripMilageUpdate  = { milageStop }
+      
+      const response = await fetch("http://localhost:4000/api/tracks/" + trip._id, {
+        method: "PATCH",
+          body: JSON.stringify(tripMilageUpdate),
+          headers: {
+              "content-type": "application/json",
+              "Authorization": `Bearer ${user.token}`
+          }
+      })
+        const json = await response.json()
+
+      if(!response.ok) {
+        setError(json.error)
+        console.log(trip)
+      }
+      if(response.ok) {
+        setError(null)
+        setMilageClicked(false)
+        dispatch({type: "SET_TRIP", payload: json})
+        console.log("Update sucesfull" + trip)
+      }
+    }
+
     const timeDiff = formatDistanceStrict(new Date(trip.dateStop), new Date(trip.dateStart), {
       unit: 'hour',
       roundingMethod: 'ceil'
@@ -104,29 +139,50 @@ const TripDetails = ({ trip }) => {
         setParagraphClicked(false)
       }
     }
-    
 
+    const onMilageClick = () => {
+      if(!isMilageClicked) {
+        setMilageClicked(true)
+      } else {
+        setMilageClicked(false)
+      }
+    }
+    
   return (
       <div className="trip-details">
           <h4 onClick={onMouseClick}>{` ${trip.title} ‣‣‣ ${trip.cityTwo}`}</h4>
-          {isExpanded ? <p><strong>Start date: </strong> {date}</p> : null }
-          {isExpanded ? <p onClick={onParagraphClick} ><strong>End date: </strong> {trip.dateStop ? date1 : "Click to update"}</p> : null }
+          {isExpanded ? <p><strong>Start date: </strong> {date}</p> : "" }
+          {isExpanded ? <p onClick={onParagraphClick} ><strong>End date: </strong> {trip.dateStop ? date1 : "Click to update"}</p> : "" }
           {isParagraphClicked && !trip.dateStop ? 
             <form onSubmit={handleUpdateSubmit}><input className="endDateInput"
                 type="datetime-local"
                 onChange={(event) => 
                 setStop(event.target.value) }
                 value={dateStop}
-                
-                
                 />
                 <Zoom in = {isParagraphClicked}>
                    <button className="updateButton">Update</button>
                 </Zoom>
             </form> : null}
     
-          {isExpanded ? <p><strong>Work length: </strong> {trip.dateStop ? timeDiff : "On going"}</p>: null }
-        
+          {isExpanded && trip.dateStop ? <p><strong>Work length: </strong> {trip.dateStop ? timeDiff : "On going"}</p>: null }
+          {isExpanded ? <p onClick={onMilageClick} ><strong>Trip Length: </strong> {trip.milageStart && trip.milageStop ? `${tripLength} KM` : `Click to update`}</p> : null }
+          {isMilageClicked && !trip.milageStop ?
+            <form onSubmit={handleUpdateMilage}>
+            <p>{`Milage at start: ${trip.milageStart} KM`}</p>
+            <input className="endDateInput"
+                type="number"
+                onChange={(event) => 
+                setMilageStop(event.target.value) }
+                value={milageStop}
+                placeholder="KM end"
+                />
+                <Zoom in = {isMilageClicked}>
+                   <button className="updateButton">Update</button>
+                </Zoom>
+            </form> : null}
+            {isMilageClicked && trip.milageStop ? <p>{`Milage at start: ${trip.milageStart} KM`} <br /> {`Milage at end: ${trip.milageStop} KM`} </p> : "" }
+
           <Zoom in = {isExpanded}>
           <span className="material-symbols-outlined" onClick={handleDeleteClick} >delete</span>
           </Zoom>

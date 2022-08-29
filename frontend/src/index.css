@@ -6,17 +6,13 @@
   --primary: #21dbdb;
   --error: #e7195a;
 }
-body {
-  background: #eee;
-  background-image: url("https://www.transparenttextures.com/patterns/black-paper.png");
+body, header {
+  background-color: rgba(49, 47, 47, 0.846);
+  background-image: url(./img/truck.jpg);
+  background-blend-mode:inherit;
   margin: 0;
   font-family: "Poppins";
-}
-header {
-  background-color: #82848c;
-  background-image: url("https://www.transparenttextures.com/patterns/clean-gray-paper.png");
-  box-shadow: 0 0 8px 8px #82848c inset;
-  
+  box-sizing: border-box;
 }
 header .container {
   max-width: 1400px;
@@ -31,10 +27,14 @@ header a {
   text-decoration: none;
 }
 .pages{
-  max-width: 1400px;
+  max-width: 100vw;
   padding: 20px;
   margin: 0 auto;
+
 }
+.loginButton {
+  color: #000;
+ }
 
 /* homepage */
 .home {
@@ -42,15 +42,27 @@ header a {
   grid-template-columns: 3fr 1fr;
   gap: 100px;
 }
+.create{
+  position: fixed;
+  right: 0;
+  max-width: 25vw;
+  margin-right: 2%;
+}
+.create h3 {
+  font-style: oblique;
+  color: #fff;
+}
 
 .trip-details {
-  background: #82848c;
-  background-image: url("https://www.transparenttextures.com/patterns/black-paper.png");
+  background-color: rgba(49, 47, 47, 0.846);
+  background-blend-mode: darken;
   border-radius: 4px;
   margin: 20px auto;
   padding: 20px;
   position: relative;
   box-shadow: 4px 4px 8px rgba(0,0,0,0.05);
+  box-sizing: border-box;
+  max-width: 70%;
 }
 .trip-details h4 {
   margin: 0 0 10px 0;
@@ -59,7 +71,7 @@ header a {
 }
 .trip-details p {
   margin: 0;
-  font-size: 0.9em;
+  font-size: 1rem;
   color: #eee;
 }
 .trip-details span {
@@ -76,9 +88,24 @@ header a {
   width: 30%;
 }
 
-/* new workout form */
+.millage {
+  display: block;
+}
+.half {
+  width: 49%;
+  float: left;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  margin-right: 1%;
+}
+
+/* new trip form */
 label, input {
   display: block;
+  opacity: 0.7;
+}
+label {
+  color: #fff;
 }
 input {
   padding: 10px;
@@ -91,15 +118,19 @@ input {
 }
 
 form button {
-  background: var(--primary);
-  border: 0;
+  background: transparent;
+  border: solid 2px var(--primary);
   color: #fff;
   padding: 10px;
   font-family: "Poppins";
-  border-radius: 4px;
+  border-radius: 7px;
   cursor: pointer;
   margin-bottom: 10px;
 }
+form button:hover {
+  background-color: var(--primary);
+}
+
 div.error {
   padding: 10px;
   background: #ffefef;
@@ -110,6 +141,7 @@ div.error {
 }
 input.error {
   border: 1px solid var(--error);
+  background-color: #cf4141;
 }
 
 /* Navbar */
@@ -117,12 +149,14 @@ nav {
   display: flex;
   align-items: center;
 }
+nav span {
+  color: #fff;
+}
 nav a {
   margin-left: 10px;
 }
 nav button {
-  background: #82848c;
-  background-image: url("https://www.transparenttextures.com/patterns/clean-gray-paper.png");
+  background: transparent;
   color: #fff;
   border: 2px solid var(--primary);
   margin-left: 10px;
@@ -140,4 +174,69 @@ form.login, form.signup {
   padding: 20px;
   background: #fff;
   border-radius: 5px;
+}
+
+@media screen and (max-width: 580px) {
+  .pages{
+    max-width: 600px;
+    padding: 0 5px 0 5px;
+    margin: 0;
+  }
+  .home {
+    gap: 30px;
+    box-sizing: border-box;
+  }
+  .trip-details {
+    max-width: 85%;
+    margin-left: 1% !important;
+  }
+  .trip-details h4 {
+    margin: 0 0 5px 0;
+    font-size: 1em;
+  }
+  .trip-details p {
+    font-size: 0.8rem;
+    color: #eee;
+  }
+  .trip-details span {
+    position: absolute;
+    top: 80%;
+    right: 5%;
+    cursor: pointer;
+    background: #f1f1f1;
+    padding: 6px;
+    border-radius: 50%;
+    color: #333;
+  }
+  .endDateInput {
+    width: 90%;
+   
+  }
+  label, input {
+    width: 70%;
+  }
+  .half {
+    float: none;
+  }
+  
+  .create{
+    position: fixed;
+    right: -13%;
+    max-width: 50%;
+    margin-right: 0;
+  }
+  .create h3 {
+    font-size: 0.9rem;
+  }
+ 
+  .credentials {
+    transform: translatex(10%);
+    display: block;
+  }
+  .loginButton{
+    color: #000;
+  }
+  nav button {
+    padding: 3px 5px;
+  }
 }
