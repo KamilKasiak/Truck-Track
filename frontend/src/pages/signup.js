@@ -22,22 +22,25 @@ const Signup = () => {
                 type="email"
                 onChange={(event) => setEmail(event.target.value)}
                 value={email}
+                placeholder="Enter email"
             />
             <label>Password:</label>
             <input
                 type="password"
                 onChange={(event) => setPassword(event.target.value)}
                 value={password}
+                placeholder="Enter Password"
             />
             <label>Confirm Password:</label>
             <input
                 type="password"
                 onChange={(event) => setConfirmPassword(event.target.value)}
                 value={confirmPassword}
-                className={password!==confirmPassword ? "error" : null}    
+                className={password!==confirmPassword ? "error" : null}
+                placeholder="Confirm Password"   
             />
             
-            <button disabled= {isLoading}>Sign Up</button>
+            <button className="loginButton" disabled= {isLoading}>Sign Up</button>
             {password !== confirmPassword ? <div className="error"><p>Passwords doesn't match</p></div> : null}
 
             {error && <div className="error">{error}</div>}

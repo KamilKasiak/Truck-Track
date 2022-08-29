@@ -15,7 +15,7 @@ const Navbar = () => {
                 </Link>
                 <nav>
                 {user && (
-                    <div>
+                    <div className="credentials">
                 <span>{user.email}</span>
                     <button onClick={() => {logout()}}>Log out</button>
                 </div>

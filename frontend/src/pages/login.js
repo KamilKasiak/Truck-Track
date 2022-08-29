@@ -20,14 +20,16 @@ const Login = () => {
                 type="email"
                 onChange={(event) => setEmail(event.target.value)}
                 value={email}
+                placeholder="Enter email"
             />
             <label>Password:</label>
             <input
                 type="password"
                 onChange={(event) => setPassword(event.target.value)}
                 value={password}
+                placeholder="Password"
             />
-            <button disabled={isLoading}>Log in</button>
+            <button className="loginButton" disabled={isLoading}>Log in</button>
             {error && <div className="error">{error}</div>}
         </form>
     )
