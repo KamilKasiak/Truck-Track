@@ -5,7 +5,7 @@ import cors from "cors"
 import mongoose from "mongoose"
 import router from "./routes/tracks.js"
 import userRouter from "./routes/user.js"
-const connectDB = require('./config/db');
+import connectDB from './config/db.js';
 const port = process.env.PORT || 4000;
 
 // CONNECT TO DB
