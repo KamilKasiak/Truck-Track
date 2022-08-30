@@ -14,7 +14,7 @@ const Home = () => {
         const fetchTrips = async () => {
         
             //http://localhost:4000/
-            const response = await fetch("http://truck-track.kasiakkamil.com/api/tracks" || "http://localhost:4000/api/tracks", {
+            const response = await fetch("/api/tracks", {
                 headers: {
                     // have to get headers with authorization data token: Bearer + token grabed from user from AuthContext
                     "Authorization": `Bearer ${user.token}`

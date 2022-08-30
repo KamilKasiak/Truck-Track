@@ -42,8 +42,8 @@ const TripDetails = ({ trip }) => {
       if (!user) {
         return
       }
-
-      const response = await fetch("http://localhost:4000/api/tracks/" + trip._id, {
+        //http://localhost:4000
+      const response = await fetch("/api/tracks/" + trip._id, {
         method: "DELETE",
         headers: { 
           "Authorization": `Bearer ${user.token}`
@@ -66,7 +66,7 @@ const TripDetails = ({ trip }) => {
 
       const tripUpdate  = { dateStop }
       
-      const response = await fetch("http://localhost:4000/api/tracks/" + trip._id, {
+      const response = await fetch("/api/tracks/" + trip._id, {
         method: "PATCH",
           body: JSON.stringify(tripUpdate),
           headers: {
@@ -97,7 +97,7 @@ const TripDetails = ({ trip }) => {
 
       const tripMilageUpdate  = { milageStop }
       
-      const response = await fetch("http://localhost:4000/api/tracks/" + trip._id, {
+      const response = await fetch("/api/tracks/" + trip._id, {
         method: "PATCH",
           body: JSON.stringify(tripMilageUpdate),
           headers: {
