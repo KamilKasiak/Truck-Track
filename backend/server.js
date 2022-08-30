@@ -5,6 +5,10 @@ dotenv.config()
 import cors from "cors"
 import router from "./routes/tracks.js"
 import userRouter from "./routes/user.js"
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const url = process.env.MONGO_URI;
 const app = express();
@@ -24,7 +28,7 @@ app.use("/api/user",userRouter)
 
 //SERVE Frontend on production
 if (process.env.NODE_ENV == "production") {
-    app.use(express.static(path.join(__dirname, '../frontend/build')))
+    app.use(express.static(__dirname, '../frontend/build'))
 
     app.get("*", (req,res) => {
         res.sendFile(
