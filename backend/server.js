@@ -9,6 +9,7 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+import path from "path"
 
 const url = process.env.MONGO_URI;
 const app = express();
@@ -28,7 +29,7 @@ app.use("/api/user",userRouter)
 
 //SERVE Frontend on production
 if (process.env.NODE_ENV == "production") {
-    app.use(express.static(__dirname, '../frontend/build'))
+    app.use(express.static(path.join(__dirname, '../frontend/build')))
 
     app.get("*", (req,res) => {
         res.sendFile(
@@ -40,9 +41,7 @@ if (process.env.NODE_ENV == "production") {
 }
 
 // CONNECT TO DB
-mongoose.connect(url, {  useUnifiedTopology:true,
-    useNewUrlParser: true,
-    useCreateIndex: true})
+mongoose.connect(url)
     .then(() => {
         // LISTEN for request only if connected to DB
         app.listen(port, () => {
