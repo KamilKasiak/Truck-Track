@@ -25,7 +25,7 @@ const TripForm = () => {
 
         const trip = {title, cityTwo, dateStart, dateStop, milageStart, milageStop}
 
-        const response = await fetch("http://localhost:4000/api/tracks", {
+        const response = await fetch("/api/tracks", {
             method: "POST",
             body: JSON.stringify(trip),
             headers: {
