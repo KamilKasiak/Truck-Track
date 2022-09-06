@@ -25,7 +25,7 @@ const TripForm = () => {
 
         const trip = {title, cityTwo, dateStart, dateStop, milageStart, milageStop}
 
-        const response = await fetch("/api/tracks", {
+        const response = await fetch("http://localhost:4000/api/tracks" || "/api/tracks", {
             method: "POST",
             body: JSON.stringify(trip),
             headers: {
@@ -101,7 +101,7 @@ const TripForm = () => {
             />
             </div>
 
-            <button>Add Trip</button>
+            <button className="tripAddButton">Add Trip</button>
         {error && <div className="error">{error}</div>}
         </form>
     )

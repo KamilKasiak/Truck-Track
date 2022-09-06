@@ -13,7 +13,7 @@ import path from "path"
 
 const url = process.env.MONGO_URI;
 const app = express();
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 3000;
 
 // MIDDLEWARE
 app.use(express.json())

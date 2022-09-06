@@ -47,6 +47,7 @@ header a {
   right: 0;
   max-width: 25vw;
   margin-right: 2%;
+  box-sizing: border-box;
 }
 .create h3 {
   font-style: oblique;
@@ -85,7 +86,7 @@ header a {
   color: #333;
 }
 .endDateInput {
-  width: 30%;
+  width: 40%;
 }
 
 .millage {
@@ -100,6 +101,7 @@ header a {
 }
 
 /* new trip form */
+
 label, input {
   display: block;
   opacity: 0.7;
@@ -177,6 +179,10 @@ form.login, form.signup {
 }
 
 @media screen and (max-width: 580px) {
+  html,body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
   .pages{
     max-width: 600px;
     padding: 0 5px 0 5px;
@@ -186,6 +192,22 @@ form.login, form.signup {
     gap: 30px;
     box-sizing: border-box;
   }
+  .create{
+    position: fixed;
+    right: -13%;
+    max-width: 50%;
+    scale: 80%;
+    top:15%;
+    margin-right: 0;
+    box-sizing: border-box;
+  }
+  .create h3 {
+    font-size: 0.9rem;
+  }
+  /* input[type="date"] ::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+} */
   .trip-details {
     max-width: 85%;
     margin-left: 1% !important;
@@ -208,6 +230,11 @@ form.login, form.signup {
     border-radius: 50%;
     color: #333;
   }
+  .tripAddButton {
+    position: relative;
+    z-index: 3;
+  }
+
   .endDateInput {
     width: 90%;
    
@@ -218,17 +245,6 @@ form.login, form.signup {
   .half {
     float: none;
   }
-  
-  .create{
-    position: fixed;
-    right: -13%;
-    max-width: 50%;
-    margin-right: 0;
-  }
-  .create h3 {
-    font-size: 0.9rem;
-  }
- 
   .credentials {
     transform: translatex(10%);
     display: block;
