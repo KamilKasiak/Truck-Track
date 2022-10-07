@@ -1,0 +1,24 @@
+.add-trip-container {
+  margin: 0;
+  box-sizing: border-box;
+  .date-picker-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .create {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+
+    right: 0;
+    max-width: 100%;
+    margin-right: 2%;
+    box-sizing: border-box;
+  }
+  .create h3 {
+    font-style: oblique;
+    color: #fff;
+  }
+}

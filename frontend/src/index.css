@@ -6,12 +6,13 @@
   --primary: #21dbdb;
   --error: #e7195a;
 }
-body, header {
+body,
+header {
   background-color: rgba(49, 47, 47, 0.846);
   background-image: url(./img/truck.jpg);
-  background-blend-mode:inherit;
+  background-blend-mode: inherit;
   margin: 0;
-  font-family: "Poppins";
+  font-family: 'Poppins';
   box-sizing: border-box;
 }
 header .container {
@@ -26,42 +27,40 @@ header a {
   color: #fff;
   text-decoration: none;
 }
-.pages{
+.pages {
   max-width: 100vw;
   padding: 20px;
   margin: 0 auto;
-
 }
 .loginButton {
   color: #000;
- }
+}
 
 /* homepage */
 .home {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  gap: 100px;
-}
-.create{
-  position: fixed;
-  right: 0;
-  max-width: 25vw;
-  margin-right: 2%;
-  box-sizing: border-box;
-}
-.create h3 {
-  font-style: oblique;
-  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
 }
 
+.trip {
+  display: flex;
+  flex: 3;
+  flex-direction: column;
+}
+.create {
+  flex: 1;
+}
 .trip-details {
+  width: 100%;
   background-color: rgba(49, 47, 47, 0.846);
   background-blend-mode: darken;
   border-radius: 4px;
   margin: 20px auto;
   padding: 20px;
   position: relative;
-  box-shadow: 4px 4px 8px rgba(0,0,0,0.05);
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.05);
   box-sizing: border-box;
   max-width: 70%;
 }
@@ -102,7 +101,8 @@ header a {
 
 /* new trip form */
 
-label, input {
+label,
+input {
   display: block;
   opacity: 0.7;
 }
@@ -124,7 +124,7 @@ form button {
   border: solid 2px var(--primary);
   color: #fff;
   padding: 10px;
-  font-family: "Poppins";
+  font-family: 'Poppins';
   border-radius: 7px;
   cursor: pointer;
   margin-bottom: 10px;
@@ -162,28 +162,30 @@ nav button {
   color: #fff;
   border: 2px solid var(--primary);
   margin-left: 10px;
-  padding:6px 10px;
+  padding: 6px 10px;
   border-radius: 4px;
-  font-family: "Poppins";
+  font-family: 'Poppins';
   cursor: pointer;
   font-size: 1rem;
 }
 
 /* Auth forms */
-form.login, form.signup {
+form.login,
+form.signup {
   max-width: 400px;
-  margin:40px auto;
+  margin: 40px auto;
   padding: 20px;
   background: #fff;
   border-radius: 5px;
 }
 
 @media screen and (max-width: 580px) {
-  html,body {
+  html,
+  body {
     max-width: 100%;
     overflow-x: hidden;
   }
-  .pages{
+  .pages {
     max-width: 600px;
     padding: 0 5px 0 5px;
     margin: 0;
@@ -192,12 +194,12 @@ form.login, form.signup {
     gap: 30px;
     box-sizing: border-box;
   }
-  .create{
-    position: fixed;
+  .create {
+    flex: 1;
     right: -13%;
     max-width: 50%;
     scale: 80%;
-    top:15%;
+    top: 15%;
     margin-right: 0;
     box-sizing: border-box;
   }
@@ -237,9 +239,9 @@ form.login, form.signup {
 
   .endDateInput {
     width: 90%;
-   
   }
-  label, input {
+  label,
+  input {
     width: 70%;
   }
   .half {
@@ -249,7 +251,7 @@ form.login, form.signup {
     transform: translatex(10%);
     display: block;
   }
-  .loginButton{
+  .loginButton {
     color: #000;
   }
   nav button {
