@@ -108,11 +108,11 @@ const TripForm = () => {
             <Stack spacing={3}>
               <MobileDateTimePicker
                 value={value}
-                className={
-                  emptyFields.includes('dateStart')
-                    ? 'error date-picker'
-                    : 'date-picker'
-                }
+                // className={
+                //   emptyFields.includes('dateStart')
+                //     ? 'error date-picker'
+                //     : 'date-picker'
+                // }
                 onChange={handleChangeStart}
                 label='Start Time'
                 onError={console.log}
@@ -120,19 +120,39 @@ const TripForm = () => {
                 inputFormat='DD/MM/YYYY HH:mm'
                 renderInput={(params) => (
                   <TextField
-                    sx={{
-                      svg: { color: '#fff' },
-                      input: {
-                        color: '#fff',
-                        textShadow: '0px 0px 4px black',
-                        backgroundColor: '#333',
-                        opacity: '0.5',
-                        padding: '14px 5px 5px 10px',
-                        marginBottom: '0.5rem',
-                        border: '1px solid #ddd',
-                      },
-                      label: { color: '#fff', fontSize: '1rem', top: '9px' },
-                    }}
+                    sx={
+                      emptyFields.includes('dateStart')
+                        ? {
+                            svg: { color: '#fff' },
+                            input: {
+                              color: '#fff',
+                              textShadow: '0px 0px 4px black',
+                              backgroundColor: '#e7195a',
+                              opacity: '0.5',
+                              padding: '14px 5px 5px 10px',
+                            },
+                            label: {
+                              color: '#fff',
+                              fontSize: '1rem',
+                              top: '9px',
+                            },
+                          }
+                        : {
+                            svg: { color: '#fff' },
+                            input: {
+                              color: '#fff',
+                              textShadow: '0px 0px 4px black',
+                              backgroundColor: '#333',
+                              opacity: '0.5',
+                              padding: '14px 5px 5px 10px',
+                            },
+                            label: {
+                              color: '#fff',
+                              fontSize: '1rem',
+                              top: '9px',
+                            },
+                          }
+                    }
                     {...params}
                   />
                 )}

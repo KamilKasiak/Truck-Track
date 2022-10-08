@@ -139,21 +139,7 @@ form.signup {
   }
   .home {
   }
-  /* .create {
-    right: -13%;
-    max-width: 50%;
-    scale: 80%;
-    top: 15%;
-    margin-right: 0;
-    box-sizing: border-box;
-  }
-  .create h3 {
-    font-size: 0.9rem;
-  } */
-  /* input[type="date"] ::-webkit-calendar-picker-indicator {
-    display: none;
-    -webkit-appearance: none;
-} */
+
   .trip-details {
     max-width: 100%;
     margin-left: 1% !important;

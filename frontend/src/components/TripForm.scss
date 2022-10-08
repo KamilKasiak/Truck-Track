@@ -1,11 +1,12 @@
 .add-trip-container {
-  flex: 1;
+  flex: 1.2;
   margin: 0;
   box-sizing: border-box;
   .date-picker-container {
     display: flex;
     justify-content: flex-end;
     flex-direction: column;
+    gap: 0.5rem;
   }
   .create {
     display: flex;
@@ -29,7 +30,7 @@
 .millage {
   max-width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 4px;
   .half {
     display: block;
@@ -40,7 +41,18 @@
   }
 }
 @media screen and (max-width: 640px) {
+  .millage {
+    flex-direction: column;
+    input {
+      &:first-child {
+        margin-bottom: 0;
+      }
+      &:last-child {
+        margin-top: 0;
+      }
+    }
+  }
   .half {
-    float: none;
+    min-width: 100%;
   }
 }
