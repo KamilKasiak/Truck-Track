@@ -7,7 +7,6 @@ import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 
 import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
 
@@ -23,8 +22,6 @@ const TripForm = () => {
   const [error, setError] = useState(null);
   const [emptyFields, setEmptyFields] = useState([]);
   const [value, setValue] = useState(dayjs());
-
-  const [dateWithInitialValue, setDateWithInitialValue] = useState(dayjs());
 
   const handleChangeStart = (newValue) => {
     setValue(newValue);
@@ -42,7 +39,6 @@ const TripForm = () => {
       setError('You must be logged in');
       return;
     }
-
     const trip = {
       title,
       cityTwo,
@@ -75,6 +71,7 @@ const TripForm = () => {
       setMilageStop('');
       setError(null);
       setEmptyFields([]);
+      setValue(dayjs());
       console.log('New trip added', json);
       dispatch({ type: 'CREATE_TRIP', payload: json });
     }
@@ -109,37 +106,18 @@ const TripForm = () => {
         <div className='date-picker-container'>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <Stack spacing={3}>
-              <DateTimePicker
+              <MobileDateTimePicker
+                value={value}
                 className={
                   emptyFields.includes('dateStart')
                     ? 'error date-picker'
                     : 'date-picker'
                 }
-                label='Starting Time'
-                value={value}
                 onChange={handleChangeStart}
-                renderInput={(params) => <TextField {...params} />}
-              />
-            </Stack>
-
-            <Stack spacing={3}>
-              <DateTimePicker
-                className='date-picker'
-                label='Ending Time'
-                value={value}
-                onChange={handleChangeStop}
-                renderInput={(params) => <TextField {...params} />}
-              />
-
-              <MobileDateTimePicker
-                value={dateWithInitialValue}
-                onChange={(newValue) => {
-                  setDateWithInitialValue(newValue);
-                }}
-                label='With error handler'
+                label='Start Time'
                 onError={console.log}
                 minDate={dayjs('2018-01-01T00:00')}
-                inputFormat='DD/MM/YYYY HH:mm A'
+                inputFormat='DD/MM/YYYY HH:mm'
                 renderInput={(params) => (
                   <TextField
                     sx={{
@@ -149,8 +127,38 @@ const TripForm = () => {
                         textShadow: '0px 0px 4px black',
                         backgroundColor: '#333',
                         opacity: '0.5',
+                        padding: '14px 5px 5px 10px',
+                        marginBottom: '0.5rem',
+                        border: '1px solid #ddd',
                       },
-                      label: { color: '#fff', fontSize: '1.2rem', top: '5px' },
+                      label: { color: '#fff', fontSize: '1rem', top: '9px' },
+                    }}
+                    {...params}
+                  />
+                )}
+              />
+            </Stack>
+
+            <Stack spacing={3}>
+              <MobileDateTimePicker
+                value={value}
+                onChange={handleChangeStop}
+                label='End Time'
+                onError={console.log}
+                minDate={dayjs('2018-01-01T00:00')}
+                inputFormat='DD/MM/YYYY HH:mm'
+                renderInput={(params) => (
+                  <TextField
+                    sx={{
+                      svg: { color: '#fff' },
+                      input: {
+                        color: '#fff',
+                        textShadow: '0px 0px 4px black',
+                        backgroundColor: '#333',
+                        opacity: '0.5',
+                        padding: '14px 5px 5px 10px',
+                      },
+                      label: { color: '#fff', fontSize: '1rem', top: '9px' },
                     }}
                     {...params}
                   />

@@ -1,24 +1,46 @@
 .add-trip-container {
+  flex: 1;
   margin: 0;
   box-sizing: border-box;
   .date-picker-container {
     display: flex;
+    justify-content: flex-end;
     flex-direction: column;
-    gap: 2rem;
   }
   .create {
     display: flex;
-    flex: 1;
     flex-direction: column;
-    justify-content: center;
-
-    right: 0;
-    max-width: 100%;
     margin-right: 2%;
     box-sizing: border-box;
+    max-width: 100%;
+    top: 15%;
+    margin-right: 0;
+    box-sizing: border-box;
+    input {
+      color: #fff;
+    }
   }
   .create h3 {
     font-style: oblique;
     color: #fff;
+    font-size: 0.9rem;
+  }
+}
+.millage {
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+  .half {
+    display: block;
+    width: 49%;
+    float: left;
+    box-sizing: border-box;
+    color: #fff;
+  }
+}
+@media screen and (max-width: 640px) {
+  .half {
+    float: none;
   }
 }
