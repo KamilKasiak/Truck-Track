@@ -9,6 +9,8 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 
+import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
+
 const TripForm = () => {
   const { dispatch } = useTripContext();
   const { user } = useAuthContext();
@@ -21,6 +23,8 @@ const TripForm = () => {
   const [error, setError] = useState(null);
   const [emptyFields, setEmptyFields] = useState([]);
   const [value, setValue] = useState(dayjs());
+
+  const [dateWithInitialValue, setDateWithInitialValue] = useState(dayjs());
 
   const handleChangeStart = (newValue) => {
     setValue(newValue);
@@ -125,6 +129,32 @@ const TripForm = () => {
                 value={value}
                 onChange={handleChangeStop}
                 renderInput={(params) => <TextField {...params} />}
+              />
+
+              <MobileDateTimePicker
+                value={dateWithInitialValue}
+                onChange={(newValue) => {
+                  setDateWithInitialValue(newValue);
+                }}
+                label='With error handler'
+                onError={console.log}
+                minDate={dayjs('2018-01-01T00:00')}
+                inputFormat='DD/MM/YYYY HH:mm A'
+                renderInput={(params) => (
+                  <TextField
+                    sx={{
+                      svg: { color: '#fff' },
+                      input: {
+                        color: '#fff',
+                        textShadow: '0px 0px 4px black',
+                        backgroundColor: '#333',
+                        opacity: '0.5',
+                      },
+                      label: { color: '#fff', fontSize: '1.2rem', top: '5px' },
+                    }}
+                    {...params}
+                  />
+                )}
               />
             </Stack>
           </LocalizationProvider>
