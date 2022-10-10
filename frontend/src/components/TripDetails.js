@@ -4,19 +4,26 @@ import './TripDetails.scss';
 import { formatDistanceToNow, formatDistanceStrict } from 'date-fns';
 import Zoom from '@mui/material/Zoom';
 import { useAuthContext } from '../hooks/useAuthContext';
+import dayjs from 'dayjs';
+import Stack from '@mui/material/Stack';
+import TextField from '@mui/material/TextField';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
 
 const TripDetails = ({ trip }) => {
   const { user } = useAuthContext();
   const [isExpanded, setExpanded] = useState(false);
   const { dispatch } = useTripContext();
   const [stateUpdate, setState] = useState({
-    dateStop: '',
     milageStop: '',
   });
-  const { dateStop, milageStop } = { stateUpdate };
+
+  const [dateStop, setDateStop] = useState('');
   const [isParagraphClicked, setParagraphClicked] = useState(false);
   const [isMilageClicked, setMilageClicked] = useState(false);
   const [error, setError] = useState(null);
+  const [value, setValue] = useState(dayjs());
   const tripLength = trip.milageStop - trip.milageStart;
   const date = new Date(trip.dateStart).toLocaleDateString('en-gb', {
     year: 'numeric',
@@ -57,6 +64,10 @@ const TripDetails = ({ trip }) => {
     }
   };
 
+  const handleUpdateDate = (newValue) => {
+    setValue(newValue);
+    setDateStop(newValue);
+  };
   const handleUpdate = (e) => {
     setState({
       ...stateUpdate,
@@ -68,15 +79,17 @@ const TripDetails = ({ trip }) => {
     e.preventDefault();
     if (!user) {
       return;
-    } else {
-      setState({
-        ...stateUpdate,
-        [e.target.name]: e.target.value,
-      });
     }
+    // else {
+    //   setState({
+    //     ...stateUpdate,
+    //     [e.target.name]: e.target.value,
+    //   });
+    // }
     const milageStop = trip.milageStop;
-    const currentDate = stateUpdate.dateStop;
-    const tripUpdate = { ...stateUpdate, currentDate, milageStop };
+    // const currentDate = stateUpdate.dateStop;
+    // const tripUpdate = { ...stateUpdate, currentDate, milageStop };
+    const tripUpdate = { dateStop, milageStop };
 
     //"/api/tracks/" + trip._id || "http://localhost:4000/api/tracks/" + trip._id
     const response = await fetch(
@@ -109,15 +122,17 @@ const TripDetails = ({ trip }) => {
     e.preventDefault();
     if (!user) {
       return;
-    } else {
-      setState({
-        ...stateUpdate,
-        [e.target.name]: e.target.value,
-      });
     }
+    // else {
+    //   setState({
+    //     ...stateUpdate,
+    //     [e.target.name]: e.target.value,
+    //   });
+    // }
     const dateStop = trip.dateStop;
     const currentMillage = stateUpdate.milageStop;
     const tripMilageUpdate = { ...stateUpdate, dateStop, currentMillage };
+    // const tripMilageUpdate = { dateStop, currentMillage };
 
     //"/api/tracks/" + trip._id || "http://localhost:4000/api/tracks/" + trip._id
     const response = await fetch(
@@ -199,13 +214,51 @@ const TripDetails = ({ trip }) => {
       )}
       {isParagraphClicked && !trip.dateStop ? (
         <form onSubmit={handleUpdateSubmit}>
-          <input
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <Stack spacing={3}>
+              <MobileDateTimePicker
+                value={value}
+                onChange={handleUpdateDate}
+                label='End Time'
+                onError={console.log}
+                minDate={dayjs('2018-01-01T00:00')}
+                inputFormat='DD/MM/YYYY HH:mm'
+                renderInput={(params) => (
+                  <TextField
+                    name='dateStop'
+                    sx={{
+                      svg: { color: '#fff' },
+                      input: {
+                        color: '#fff',
+                        textShadow: '0px 0px 4px black',
+                        backgroundColor: '#333',
+                        opacity: '0.5',
+                        padding: '14px 5px 5px 10px',
+                      },
+                      label: {
+                        color: '#fff',
+                        fontSize: '1rem',
+                        top: '9px',
+                      },
+                      width: 'fit-content',
+                      border: ' 1px solid #ddd',
+                      borderRadius: '4px',
+                      marginTop: '10px',
+                      marginBottom: '20px',
+                    }}
+                    {...params}
+                  />
+                )}
+              />
+            </Stack>
+          </LocalizationProvider>
+          {/* <input
             name='dateStop'
             className='endDateInput'
             type='datetime-local'
             onChange={handleUpdate}
             value={stateUpdate.dateStop}
-          />
+          /> */}
           <Zoom in={isParagraphClicked}>
             <button className='updateButton'>Update</button>
           </Zoom>

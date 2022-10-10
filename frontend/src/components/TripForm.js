@@ -7,6 +7,9 @@ import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import AddIcon from '@mui/icons-material/Add';
+import Fab from '@mui/material/Fab';
+import Zoom from '@mui/material/Zoom';
 
 import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
 
@@ -22,6 +25,7 @@ const TripForm = () => {
   const [error, setError] = useState(null);
   const [emptyFields, setEmptyFields] = useState([]);
   const [value, setValue] = useState(dayjs());
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const handleChangeStart = (newValue) => {
     setValue(newValue);
@@ -80,135 +84,147 @@ const TripForm = () => {
   // use colons when return a template
   return (
     <div className='add-trip-container'>
-      <form className='create' onSubmit={handleSubmit}>
-        <h3>Add a New Trip</h3>
+      <div className='expandButton'>
+        <Fab
+          onClick={() => {
+            setIsExpanded(!isExpanded);
+          }}
+        >
+          <AddIcon />
+        </Fab>
+      </div>
+      <Zoom in={isExpanded}>
+        <form
+          className={isExpanded ? 'create' : 'hide'}
+          onSubmit={handleSubmit}
+        >
+          <div className='cities'>
+            <input
+              className={
+                emptyFields.includes('title') ? 'error cityOne' : 'cityOne'
+              }
+              type='text'
+              onChange={(event) => setTitle(event.target.value)}
+              value={title}
+              placeholder='From'
+            />
+            <input
+              className={
+                emptyFields.includes('cityTwo') ? 'error cityTwo' : 'cityTwo'
+              }
+              type='text'
+              onChange={(event) => setCityTwo(event.target.value)}
+              value={cityTwo}
+              placeholder='To'
+            />
+          </div>
+          <div className='date-picker-container'>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <Stack spacing={3}>
+                <MobileDateTimePicker
+                  value={value}
+                  // className={
+                  //   emptyFields.includes('dateStart')
+                  //     ? 'error date-picker'
+                  //     : 'date-picker'
+                  // }
+                  onChange={handleChangeStart}
+                  label='Start Time'
+                  onError={console.log}
+                  minDate={dayjs('2018-01-01T00:00')}
+                  inputFormat='DD/MM/YYYY HH:mm'
+                  renderInput={(params) => (
+                    <TextField
+                      sx={
+                        emptyFields.includes('dateStart')
+                          ? {
+                              svg: { color: '#fff' },
+                              input: {
+                                color: '#fff',
+                                textShadow: '0px 0px 4px black',
+                                backgroundColor: '#e7195a',
+                                opacity: '0.5',
+                                padding: '14px 5px 5px 10px',
+                              },
+                              label: {
+                                color: '#fff',
+                                fontSize: '1rem',
+                                top: '9px',
+                              },
+                            }
+                          : {
+                              svg: { color: '#fff' },
+                              input: {
+                                color: '#fff',
+                                textShadow: '0px 0px 4px black',
+                                backgroundColor: '#333',
+                                opacity: '0.5',
+                                padding: '14px 5px 5px 10px',
+                              },
+                              label: {
+                                color: '#fff',
+                                fontSize: '1rem',
+                                top: '9px',
+                              },
+                            }
+                      }
+                      {...params}
+                    />
+                  )}
+                />
+              </Stack>
 
-        <div className='cities'>
-          <input
-            className={
-              emptyFields.includes('title') ? 'error cityOne' : 'cityOne'
-            }
-            type='text'
-            onChange={(event) => setTitle(event.target.value)}
-            value={title}
-            placeholder='From'
-          />
-          <input
-            className={
-              emptyFields.includes('cityTwo') ? 'error cityTwo' : 'cityTwo'
-            }
-            type='text'
-            onChange={(event) => setCityTwo(event.target.value)}
-            value={cityTwo}
-            placeholder='To'
-          />
-        </div>
-        <div className='date-picker-container'>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <Stack spacing={3}>
-              <MobileDateTimePicker
-                value={value}
-                // className={
-                //   emptyFields.includes('dateStart')
-                //     ? 'error date-picker'
-                //     : 'date-picker'
-                // }
-                onChange={handleChangeStart}
-                label='Start Time'
-                onError={console.log}
-                minDate={dayjs('2018-01-01T00:00')}
-                inputFormat='DD/MM/YYYY HH:mm'
-                renderInput={(params) => (
-                  <TextField
-                    sx={
-                      emptyFields.includes('dateStart')
-                        ? {
-                            svg: { color: '#fff' },
-                            input: {
-                              color: '#fff',
-                              textShadow: '0px 0px 4px black',
-                              backgroundColor: '#e7195a',
-                              opacity: '0.5',
-                              padding: '14px 5px 5px 10px',
-                            },
-                            label: {
-                              color: '#fff',
-                              fontSize: '1rem',
-                              top: '9px',
-                            },
-                          }
-                        : {
-                            svg: { color: '#fff' },
-                            input: {
-                              color: '#fff',
-                              textShadow: '0px 0px 4px black',
-                              backgroundColor: '#333',
-                              opacity: '0.5',
-                              padding: '14px 5px 5px 10px',
-                            },
-                            label: {
-                              color: '#fff',
-                              fontSize: '1rem',
-                              top: '9px',
-                            },
-                          }
-                    }
-                    {...params}
-                  />
-                )}
-              />
-            </Stack>
+              <Stack spacing={3}>
+                <MobileDateTimePicker
+                  value={value}
+                  onChange={handleChangeStop}
+                  label='End Time'
+                  onError={console.log}
+                  minDate={dayjs('2018-01-01T00:00')}
+                  inputFormat='DD/MM/YYYY HH:mm'
+                  renderInput={(params) => (
+                    <TextField
+                      sx={{
+                        svg: { color: '#fff' },
+                        input: {
+                          color: '#fff',
+                          textShadow: '0px 0px 4px black',
+                          backgroundColor: '#333',
+                          opacity: '0.5',
+                          padding: '14px 5px 5px 10px',
+                        },
+                        label: { color: '#fff', fontSize: '1rem', top: '9px' },
+                      }}
+                      {...params}
+                    />
+                  )}
+                />
+              </Stack>
+            </LocalizationProvider>
+          </div>
+          <div className='millage'>
+            <input
+              className={
+                emptyFields.includes('milageStart') ? 'error half' : 'half'
+              }
+              type='number'
+              placeholder='KM start'
+              onChange={(event) => setMilageStart(event.target.value)}
+              value={milageStart}
+            />
+            <input
+              type='number'
+              className='half'
+              placeholder='KM end'
+              onChange={(event) => setMilageStop(event.target.value)}
+              value={milageStop}
+            />
+          </div>
 
-            <Stack spacing={3}>
-              <MobileDateTimePicker
-                value={value}
-                onChange={handleChangeStop}
-                label='End Time'
-                onError={console.log}
-                minDate={dayjs('2018-01-01T00:00')}
-                inputFormat='DD/MM/YYYY HH:mm'
-                renderInput={(params) => (
-                  <TextField
-                    sx={{
-                      svg: { color: '#fff' },
-                      input: {
-                        color: '#fff',
-                        textShadow: '0px 0px 4px black',
-                        backgroundColor: '#333',
-                        opacity: '0.5',
-                        padding: '14px 5px 5px 10px',
-                      },
-                      label: { color: '#fff', fontSize: '1rem', top: '9px' },
-                    }}
-                    {...params}
-                  />
-                )}
-              />
-            </Stack>
-          </LocalizationProvider>
-        </div>
-        <div className='millage'>
-          <input
-            className={
-              emptyFields.includes('milageStart') ? 'error half' : 'half'
-            }
-            type='number'
-            placeholder='KM start'
-            onChange={(event) => setMilageStart(event.target.value)}
-            value={milageStart}
-          />
-          <input
-            type='number'
-            className='half'
-            placeholder='KM end'
-            onChange={(event) => setMilageStop(event.target.value)}
-            value={milageStop}
-          />
-        </div>
-
-        <button className='tripAddButton'>Add Trip</button>
-        {error && <div className='error'>{error}</div>}
-      </form>
+          <button className='tripAddButton'>Add Trip</button>
+          {error && <div className='error'>{error}</div>}
+        </form>
+      </Zoom>
     </div>
   );
 };

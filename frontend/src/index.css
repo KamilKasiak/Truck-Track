@@ -15,6 +15,7 @@ header {
   font-family: 'Poppins';
   box-sizing: border-box;
 }
+
 header .container {
   max-width: 1400px;
   margin: 0 auto;
@@ -130,6 +131,7 @@ form.signup {
   html,
   body {
     max-width: 100%;
+
     overflow-x: hidden;
   }
   .pages {

@@ -1,0 +1,21 @@
+.home {
+  position: relative;
+
+  .trip {
+    height: 100%;
+    display: flex;
+    flex: 3;
+    flex-direction: column;
+    justify-content: space-between;
+    // overflow-y: scroll;
+  }
+  .time-to-now {
+    color: #fff;
+    text-align: center;
+  }
+}
+@media screen and (max-width: 640px) {
+  .time-to-now {
+    font-size: 0.8rem;
+  }
+}
