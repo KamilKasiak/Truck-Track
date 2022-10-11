@@ -47,15 +47,12 @@ const TripDetails = ({ trip }) => {
       return;
     }
     //"/api/tracks/" + trip._id || "http://localhost:4000/api/tracks/" + trip._id
-    const response = await fetch(
-      'http://localhost:4000/api/tracks/' + trip._id,
-      {
-        method: 'DELETE',
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      }
-    );
+    const response = await fetch('/api/tracks/' + trip._id, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
     // waiting for response from server then get json from it
     const json = await response.json();
 
@@ -94,17 +91,14 @@ const TripDetails = ({ trip }) => {
     const tripUpdate = { dateStop, milageStop };
 
     //"/api/tracks/" + trip._id || "http://localhost:4000/api/tracks/" + trip._id
-    const response = await fetch(
-      'http://localhost:4000/api/tracks/' + trip._id,
-      {
-        method: 'PATCH',
-        body: JSON.stringify(tripUpdate),
-        headers: {
-          'content-type': 'application/json',
-          Authorization: `Bearer ${user.token}`,
-        },
-      }
-    );
+    const response = await fetch('/api/tracks/' + trip._id, {
+      method: 'PATCH',
+      body: JSON.stringify(tripUpdate),
+      headers: {
+        'content-type': 'application/json',
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
     const json = await response.json();
 
     if (!response.ok) {
@@ -137,17 +131,14 @@ const TripDetails = ({ trip }) => {
     // const tripMilageUpdate = { dateStop, currentMillage };
 
     //"/api/tracks/" + trip._id || "http://localhost:4000/api/tracks/" + trip._id
-    const response = await fetch(
-      'http://localhost:4000/api/tracks/' + trip._id,
-      {
-        method: 'PATCH',
-        body: JSON.stringify(tripMilageUpdate),
-        headers: {
-          'content-type': 'application/json',
-          Authorization: `Bearer ${user.token}`,
-        },
-      }
-    );
+    const response = await fetch('/api/tracks/' + trip._id, {
+      method: 'PATCH',
+      body: JSON.stringify(tripMilageUpdate),
+      headers: {
+        'content-type': 'application/json',
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
     const json = await response.json();
 
     if (!response.ok) {
