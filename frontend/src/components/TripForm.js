@@ -13,7 +13,12 @@ import Zoom from '@mui/material/Zoom';
 
 import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
 
-const TripForm = () => {
+const TripForm = ({
+  totalTripsCount,
+  totalWorkTime,
+  totalLength,
+  firstTripDate,
+}) => {
   const { dispatch } = useTripContext();
   const { user } = useAuthContext();
   const [title, setTitle] = useState('');
@@ -25,6 +30,7 @@ const TripForm = () => {
   const [error, setError] = useState(null);
   const [emptyFields, setEmptyFields] = useState([]);
   const [value, setValue] = useState(dayjs());
+  const [valueStop, setValueStop] = useState(dayjs());
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleChangeStart = (newValue) => {
@@ -32,7 +38,7 @@ const TripForm = () => {
     setStart(newValue);
   };
   const handleChangeStop = (newValue) => {
-    setValue(newValue);
+    setValueStop(newValue);
     setStop(newValue);
   };
 
@@ -93,6 +99,28 @@ const TripForm = () => {
           <AddIcon />
         </Fab>
       </div>
+      <Zoom in={!isExpanded}>
+        <div className={!isExpanded ? 'driver-stats' : 'hide'}>
+          <h3>Driver's profile</h3>
+          <p>
+            Total number of routes:{' '}
+            <span className='info'>{totalTripsCount}</span>
+          </p>
+          <p>
+            Total tracked work time is{' '}
+            <span className='info'>{totalWorkTime}</span>
+          </p>
+          <p>
+            Total distance traveled:{' '}
+            <span className='info'>{totalLength}km</span>
+          </p>
+          <p>
+            First tracked trip started at:{' '}
+            <span className='info'>{firstTripDate}</span>
+          </p>
+        </div>
+      </Zoom>
+
       <Zoom in={isExpanded}>
         <form
           className={isExpanded ? 'create' : 'hide'}
@@ -176,7 +204,7 @@ const TripForm = () => {
 
               <Stack spacing={3}>
                 <MobileDateTimePicker
-                  value={value}
+                  value={valueStop}
                   onChange={handleChangeStop}
                   label='End Time'
                   onError={console.log}
@@ -185,7 +213,7 @@ const TripForm = () => {
                   renderInput={(params) => (
                     <TextField
                       sx={{
-                        svg: { color: '#fff' },
+                        svg: { color: '#fff', shrink: true },
                         input: {
                           color: '#fff',
                           textShadow: '0px 0px 4px black',
@@ -193,7 +221,11 @@ const TripForm = () => {
                           opacity: '0.5',
                           padding: '14px 5px 5px 10px',
                         },
-                        label: { color: '#fff', fontSize: '1rem', top: '9px' },
+                        label: {
+                          color: '#fff',
+                          fontSize: '1rem',
+                          top: '9px',
+                        },
                       }}
                       {...params}
                     />

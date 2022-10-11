@@ -5,6 +5,7 @@ import { formatDistanceToNow, formatDistanceStrict } from 'date-fns';
 import Zoom from '@mui/material/Zoom';
 import { useAuthContext } from '../hooks/useAuthContext';
 import dayjs from 'dayjs';
+import { parseISO, differenceInHours, differenceInMinutes } from 'date-fns';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -24,6 +25,7 @@ const TripDetails = ({ trip }) => {
   const [isMilageClicked, setMilageClicked] = useState(false);
   const [error, setError] = useState(null);
   const [value, setValue] = useState(dayjs());
+  const [timeToNow, setTimeToNow] = useState('');
   const tripLength = trip.milageStop - trip.milageStart;
   const date = new Date(trip.dateStart).toLocaleDateString('en-gb', {
     year: 'numeric',
@@ -161,14 +163,17 @@ const TripDetails = ({ trip }) => {
     window.location.reload();
   };
 
-  const timeDiff = formatDistanceStrict(
-    new Date(trip.dateStop),
+  // const targetDate = parseISO(lastTripEndDate); // your target date
+  const hoursDiff = differenceInHours(
     new Date(trip.dateStart),
-    {
-      unit: 'hour',
-      roundingMethod: 'ceil',
-    }
+    new Date(trip.dateStop)
   );
+  const minutesDiff = differenceInMinutes(
+    new Date(trip.dateStart),
+    new Date(trip.dateStop)
+  );
+  const subtraction = minutesDiff - hoursDiff * 60;
+  const formattedDate = `${hoursDiff * -1}h:${subtraction * -1}min`;
 
   const onMouseClick = () => {
     if (!isExpanded) {
@@ -267,7 +272,8 @@ const TripDetails = ({ trip }) => {
 
       {isExpanded && trip.dateStop ? (
         <p>
-          <strong>Work length: </strong> {trip.dateStop ? timeDiff : 'On going'}
+          <strong>Work length: </strong>{' '}
+          {trip.dateStop ? formattedDate : 'On going'}
         </p>
       ) : null}
       {isExpanded ? (

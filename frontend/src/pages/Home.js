@@ -12,6 +12,10 @@ function Home() {
   // const { tripDataJson, setTripDataJson } = useState([]);
   const [lastTripEndDate, setLastTripEndDate] = useState('');
   const [timeToNow, setTimeToNow] = useState('');
+  const [totalTripsCount, setTotalTripsCount] = useState('');
+  const [firstTripDate, setFirstTripDate] = useState('');
+  const [totalWorkTime, setTotalWorkTime] = useState('');
+  const [totalLength, setTotalLength] = useState('');
   //let allTrips = JSON.stringify(trips, null, 2 || "");
 
   // useEffect fire function when a component is rendered. declare [] to make it empty when component is rendered
@@ -52,6 +56,47 @@ function Home() {
     }
   };
 
+  const getDriverStats = async () => {
+    const totalTripsCount = await trips.length;
+    setTotalTripsCount(totalTripsCount);
+    if (totalTripsCount > 0) {
+      const firstTripDate = await trips[trips.length - 1].dateStart;
+      const date = new Date(firstTripDate).toLocaleDateString('en-gb', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+      });
+      setFirstTripDate(date);
+
+      // let hoursDiff;
+      let minutesDiff = 0;
+      let totalLength = 0;
+      for (let i = 0; i < trips.length; i++) {
+        if (trips[i].dateStop) {
+          let minutes = differenceInMinutes(
+            new Date(trips[i].dateStart),
+            new Date(trips[i].dateStop)
+          );
+          const parseMinutes = parseInt(minutes * -1);
+          minutesDiff = minutesDiff + parseMinutes;
+        }
+
+        if (trips[i].milageStop) {
+          let tripLength = trips[i].milageStop - trips[i].milageStart;
+          totalLength += tripLength;
+        }
+      }
+      const hoursDiff = Math.floor(minutesDiff / 60);
+      const minute = minutesDiff % 60;
+      // let subtraction = minutesDiff - hoursDiff * 60;
+      let formattedDate = `${hoursDiff}h:${minute}min`;
+      setTotalWorkTime(formattedDate);
+      setTotalLength(totalLength);
+    }
+  };
+
   const currentTimeDiff = () => {
     if (lastTripEndDate) {
       const targetDate = parseISO(lastTripEndDate); // your target date
@@ -65,6 +110,7 @@ function Home() {
     }
   };
   getLastTrip();
+  getDriverStats();
 
   setInterval(function () {
     currentTimeDiff();
@@ -73,22 +119,17 @@ function Home() {
   return (
     <div className='home'>
       <div className='trip'>
-        <div>
-          {/* <button
-            onClick={(allTrips) => {
-              setTripDataJson(allTrips);
-            }}
-          >
-            get Trips
-          </button>
-          <pre>{tripDataJson}</pre> */}
-        </div>
         <p className='time-to-now'>{timeToNow}</p>
         {/* map throught the trips only when they are updated */}
         {trips &&
           trips.map((trip) => <TripDetails key={trip._id} trip={trip} />)}
       </div>
-      <TripForm />
+      <TripForm
+        totalTripsCount={totalTripsCount}
+        totalWorkTime={totalWorkTime}
+        totalLength={totalLength}
+        firstTripDate={firstTripDate}
+      />
     </div>
   );
 }

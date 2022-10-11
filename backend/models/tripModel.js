@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const tripSchema = new mongoose.Schema(
   {
@@ -19,7 +19,7 @@ const tripSchema = new mongoose.Schema(
       type: Date,
     },
     workTime: {
-      type: Date,
+      type: String,
     },
     user_id: {
       type: String,
@@ -36,6 +36,6 @@ const tripSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Trip = mongoose.model("Trip", tripSchema);
+const Trip = mongoose.model('Trip', tripSchema);
 
 export default Trip;

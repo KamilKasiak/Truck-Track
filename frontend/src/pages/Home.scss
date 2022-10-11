@@ -1,17 +1,20 @@
 .home {
   position: relative;
+  max-height: 100%;
+  box-sizing: border-box;
 
   .trip {
-    height: 100%;
+    // Browser deosn't know what to apply 100% so use fixed height of vh to display scroll
+    height: 100vh;
     display: flex;
     flex: 3;
     flex-direction: column;
-    justify-content: space-between;
-    // overflow-y: scroll;
+    overflow-y: auto;
   }
   .time-to-now {
     color: #fff;
     text-align: center;
+    text-shadow: 0px 0px 4px #181818;
   }
 }
 @media screen and (max-width: 640px) {
