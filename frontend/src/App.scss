@@ -1,0 +1,19 @@
+::-webkit-scrollbar {
+  width: 15px;
+}
+::-webkit-scrollbar-track {
+}
+::-webkit-scrollbar-thumb {
+  // background-image: linear-gradient(#61370d, #f59608);
+  border-radius: 10px;
+
+  &:hover {
+    // background-image: linear-gradient(#d32a38, #ff6a00);
+  }
+}
+
+.pages {
+  position: relative;
+  max-height: 100vh;
+  overflow: hidden;
+}

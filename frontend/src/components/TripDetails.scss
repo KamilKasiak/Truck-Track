@@ -1,0 +1,49 @@
+.trip-details {
+  width: 100%;
+  background-color: rgba(49, 47, 47, 0.846);
+  background-blend-mode: darken;
+  border-radius: 4px;
+  margin: 10px auto;
+  padding: 5px;
+  position: relative;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  max-width: 90%;
+  opacity: 0.8;
+}
+.trip-details h4 {
+  margin: 0 0 10px 0;
+  font-size: 1.2em;
+  color: var(--primary);
+}
+.trip-details p {
+  margin: 0;
+  font-size: 1rem;
+  color: #eee;
+}
+.trip-details span {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  background: #f1f1f1;
+  padding: 6px;
+  border-radius: 50%;
+  color: #333;
+}
+.endDateInput {
+  width: 40%;
+  color: #fff;
+}
+
+.millage {
+  display: block;
+}
+
+@media screen and (max-width: 640px) {
+  .trip-details span {
+    top: initial;
+    bottom: 3px;
+    right: 5px;
+  }
+}
