@@ -87,7 +87,7 @@ const TripForm = ({
     }
   };
 
-  // use colons when return a template
+  // use open bracket when return a template
   return (
     <div className='add-trip-container'>
       <div className='expandButton'>

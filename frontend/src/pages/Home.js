@@ -9,14 +9,12 @@ import { parseISO, differenceInHours, differenceInMinutes } from 'date-fns';
 function Home() {
   const { trips, dispatch } = useTripContext();
   const { user } = useAuthContext();
-  // const { tripDataJson, setTripDataJson } = useState([]);
   const [lastTripEndDate, setLastTripEndDate] = useState('');
   const [timeToNow, setTimeToNow] = useState('');
   const [totalTripsCount, setTotalTripsCount] = useState('');
   const [firstTripDate, setFirstTripDate] = useState('');
   const [totalWorkTime, setTotalWorkTime] = useState('');
   const [totalLength, setTotalLength] = useState('');
-  //let allTrips = JSON.stringify(trips, null, 2 || "");
 
   // useEffect fire function when a component is rendered. declare [] to make it empty when component is rendered
   useEffect(() => {
@@ -46,11 +44,6 @@ function Home() {
     if (date) {
       setLastTripEndDate(date);
       currentTimeDiff();
-      // const targetDate = parseISO(lastTripEndDate); // your target date
-      // const hoursDiff = differenceInHours(targetDate, new Date());
-      // const minutesDiff = differenceInMinutes(targetDate, new Date());
-      // const subtraction = minutesDiff - hoursDiff * 60;
-      // const formattedDate = `${hoursDiff * -1}h:${subtraction * -1}min`;
     } else {
       setTimeToNow('Last trip does not end yet');
     }
@@ -70,7 +63,6 @@ function Home() {
       });
       setFirstTripDate(date);
 
-      // let hoursDiff;
       let minutesDiff = 0;
       let totalLength = 0;
       for (let i = 0; i < trips.length; i++) {
@@ -90,7 +82,6 @@ function Home() {
       }
       const hoursDiff = Math.floor(minutesDiff / 60);
       const minute = minutesDiff % 60;
-      // let subtraction = minutesDiff - hoursDiff * 60;
       let formattedDate = `${hoursDiff}h:${minute}min`;
       setTotalWorkTime(formattedDate);
       setTotalLength(totalLength);

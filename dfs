@@ -1,0 +1,167 @@
+[33mcommit 1cf300aba1a24efb9c257f3ab84d6b2c56ae7e51[m[33m ([m[1;36mHEAD -> [m[1;32mredesign[m[33m, [m[1;31morigin/redesign[m[33m)[m
+Author: Kamil Kasiak <kasiakkamil@gmail.com>
+Date:   Tue Oct 11 14:38:18 2022 +0200
+
+    production url change
+
+[33mcommit bded6eac8c68534201497c09e8efa33150bfb527[m
+Author: Kamil Kasiak <kasiakkamil@gmail.com>
+Date:   Tue Oct 11 14:30:59 2022 +0200
+
+    Display driver's stats from DB and calculation. Display time from last trip end. Change display on button click. Visual changes
+
+[33mcommit dc14f3fa0066ac0b9601443c863b8a162703d6ec[m
+Author: Kamil Kasiak <kasiakkamil@gmail.com>
+Date:   Mon Oct 10 16:01:04 2022 +0200
+
+    Calculate time from last trip end (if it ended) and display it on screen. Add button for show and hide create trip form
+
+[33mcommit 9ebe0258b8de48748be85a75f830a779a16f653f[m
+Author: Kamil Kasiak <kasiakkamil@gmail.com>
+Date:   Sat Oct 8 20:31:47 2022 +0200
+
+    redesign create form ready
+
+[33mcommit 5b2a2e62e1109f56f6afbe8ca81e849332220907[m
+Author: Kamil Kasiak <kasiakkamil@gmail.com>
+Date:   Sat Oct 8 16:40:35 2022 +0200
+
+    layout
+
+[33mcommit 7c938de5237cb9afd9a928fcc0891f07e268310f[m
+Author: Kamil Kasiak <kasiakkamil@gmail.com>
+Date:   Sat Oct 8 13:14:06 2022 +0200
+
+    looking for best design
+
+[33mcommit f3c47baf56e3a031ac924ee260599b091efbe31a[m
+Author: Kamil Kasiak <kasiakkamil@gmail.com>
+Date:   Fri Oct 7 10:03:38 2022 +0200
+
+    Begining of redesign homepage
+
+[33mcommit 8a3acf52627ed15afb623f40f2df41cbc6ae20fc[m[33m ([m[1;31morigin/update[m[33m, [m[1;32mupdate[m[33m)[m
+Author: Kamil Kasiak <kasiakkamil@gmail.com>
+Date:   Tue Sep 6 09:54:18 2022 +0200
+
+    fetch repair in useLogin and useSignup files
+
+[33mcommit b8e86a230de3c6025618a9e4feb0c477e256bf97[m
+Author: Kamil Kasiak <kasiakkamil@gmail.com>
+Date:   Tue Sep 6 09:28:15 2022 +0200
+
+    fetch
+
+[33mcommit a8635a66f73a58b451cb953f3d1b95ad2ff1f613[m
+Author: Kamil Kasiak <kasiakkamil@gmail.com>
+Date:   Tue Sep 6 09:22:56 2022 +0200
+
+    repair fetch problems in server
+
+[33mcommit 1b344af9050fad3321dd0b0586d06ae6ee53e354[m
+Author: Kamil Kasiak <kasiakkamil@gmail.com>
+Date:   Tue Sep 6 09:08:13 2022 +0200
+
+    Repair problem with date update in Mozzila and Safari browsers. Stable version before full mobile optimalization
+
+[33mcommit 91670eaa198ebe55ddf8ea36368dc026474289ef[m
+Author: Kamil Kasiak <kasiakkamil@gmail.com>
+Date:   Wed Aug 31 09:12:32 2022 +0200
+
+    update favicon, correct endpoint in TripForm and del some files
+
+[33mcommit 81620c3a065caeb5007103d0aa4c83508a31e6d4[m
+Author: Kamil Kasiak <kasiakkamil@gmail.com>
+Date:   Tue Aug 30 19:32:41 2022 +0200
+
+    change fetch in useLogin and useSignup
+
+[33mcommit 9edf9d7c736150769e6e8a0cb87f6023df34fe0e[m
+Author: Kamil Kasiak <kasiakkamil@gmail.com>
+Date:   Tue Aug 30 19:21:23 2022 +0200
+
+    fetch another try
+
+[33mcommit d2f30bf51886ec3b93a629f12dfd72952ff6e7c2[m
+Author: Kamil Kasiak <kasiakkamil@gmail.com>
+Date:   Tue Aug 30 18:58:43 2022 +0200
+
+    Try to change fetch if I can get acces to mongodb. seems like cors problem
+
+[33mcommit baf15f63963f789764a90229de8e7a76ad406aa5[m
+Author: Kamil Kasiak <kasiakkamil@gmail.com>
+Date:   Tue Aug 30 18:11:22 2022 +0200
+
+    import path and __dirname caused the problem
+
+[33mcommit 61fbc4f470d6726e0671c532e7c13cf11b422ad7[m
+Author: Kamil Kasiak <kasiakkamil@gmail.com>
+Date:   Tue Aug 30 16:28:57 2022 +0200
+
+    server problems
+
+[33mcommit a0d20b0062c500ee5d1000c2c5863b3d841a1eac[m
+Author: Kamil Kasiak <kasiakkamil@gmail.com>
+Date:   Tue Aug 30 16:09:17 2022 +0200
+
+    correct code and file possition for deplyoment2
+
+[33mcommit ad78a43bbace3ee0b2bc40a62713217584fc7f69[m
+Author: Kamil Kasiak <kasiakkamil@gmail.com>
+Date:   Tue Aug 30 16:03:17 2022 +0200
+
+    correct code and file possition for deplyoment
+
+[33mcommit 339d3c79b9ad0778659b4aff6883d86c93a8bbe2[m
+Author: Kamil Kasiak <kasiakkamil@gmail.com>
+Date:   Tue Aug 30 15:35:32 2022 +0200
+
+    db update
+
+[33mcommit c4bfa8237730216745237b633b55a2bcbfeeb047[m
+Author: Kamil Kasiak <kasiakkamil@gmail.com>
+Date:   Tue Aug 30 15:24:28 2022 +0200
+
+    connection change to server
+
+[33mcommit df2b8e8af720822cb9245f7d946486852a6df3d2[m
+Author: Kamil Kasiak <kasiakkamil@gmail.com>
+Date:   Tue Aug 30 14:59:41 2022 +0200
+
+    Serve frontend on production tu use build created in server
+
+[33mcommit 34a2c2c45d9386de9b4c3a1f4ca1dd033a0338db[m
+Author: Kamil Kasiak <kasiakkamil@gmail.com>
+Date:   Mon Aug 29 14:07:09 2022 +0200
+
+    Add vehicle millage and calculate total trip length. Allow to update not privided data. Some layout changes. Mobile optymalization
+
+[33mcommit 08a7adf6982ae6e28f14dd44f742e7628432d731[m
+Author: Kamil Kasiak <kasiakkamil@gmail.com>
+Date:   Wed Aug 24 11:42:51 2022 +0200
+
+    Signup and login with JWT. Store JWT in local storage for 3 days. Add update endDate possibility. Correct routes with React. Some visual changes.
+
+[33mcommit 5f8a487aaa207d6867a464b438bf6afc8f76b0cb[m
+Author: Kamil Kasiak <kasiakkamil@gmail.com>
+Date:   Tue Aug 23 16:45:41 2022 +0200
+
+    Added authorization with Jason Web Token (JWT) and save token in localStorage after login and sign up. Add logout with clear saved token
+
+[33mcommit 175da2353531087bb6f65d464556d48461e51467[m
+Author: Kamil Kasiak <kasiakkamil@gmail.com>
+Date:   Mon Aug 22 15:00:05 2022 +0200
+
+    Add update end date functionality only if end date was not provided before
+
+[33mcommit 156ddd1208f6e260fafb7a6db204f5fdfd43ee63[m[33m ([m[1;32mmain[m[33m)[m
+Author: Kamil Kasiak <kasiakkamil@gmail.com>
+Date:   Fri Aug 19 23:36:41 2022 +0200
+
+    change typos in readme
+
+[33mcommit 2bf8410f43c098a5826fcd5cebb89f09cd3d2991[m
+Author: Kamil Kasiak <kasiakkamil@gmail.com>
+Date:   Fri Aug 19 18:23:03 2022 +0200
+
+    Create MERN starting project for future upgradeing
